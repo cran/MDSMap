@@ -78,7 +78,7 @@ be analysed.
 \code{p} is a smoothing parameter which operates quite differently depending on 
 whether map estimation is performed using Principal Curves or Constrained 
 MDS. If the PC method is used, \code{p} determines the smoothing parameter spar in 
-the function \code{\link[princurve]{principal.curve}} from the package 
+the function \code{\link[princurve]{principal_curve}} from the package 
 \pkg{princurve}. If \code{NULL} then the most appropriate value will be determined 
 using leave one out cross validation. 
 If Constrained MDS is used then \code{p} must be set to a number which specifies the 
@@ -120,8 +120,8 @@ ndim=3)
 \references{
 \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
 
-\cite{Hastie T, Weingessel A (2013) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 1.1-12.} \url{https://CRAN.R-project.org/package=princurve}
+\cite{Hastie T, Weingessel A, Bengtsson H, Cannoodt R (1999) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 2.1.2.} \url{https://CRAN.R-project.org/package=princurve}
 }
 \seealso{
-\code{\link[smacof]{smacofSphere}}, \code{\link[princurve]{principal.curve}}, \code{\link{calc.maps.pc}}, \code{\link{calc.maps.sphere}}, \code{\link{plot.pcmap}}, \code{\link{plot.pcmap3d}}, \code{\link{plot.spheremap}}
+\code{\link[smacof]{smacofSphere}}, \code{\link[princurve]{principal_curve}}, \code{\link{calc.maps.pc}}, \code{\link{calc.maps.sphere}}, \code{\link{plot.pcmap}}, \code{\link{plot.pcmap3d}}, \code{\link{plot.spheremap}}
 }

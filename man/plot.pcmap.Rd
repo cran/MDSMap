@@ -4,8 +4,8 @@
 \alias{plot.pcmap}
 \title{Diagnostic plots for the map estimation using calc.maps.pc with 2 dimensions.}
 \usage{
-\method{plot}{pcmap}(x, D1lim = NULL, D2lim = NULL, displaytext = TRUE,
-  ...)
+\method{plot}{pcmap}(x, D1lim = NULL, D2lim = NULL,
+  displaytext = TRUE, ...)
 }
 \arguments{
 \item{x}{Map object from \code{\link[=calc.maps.pc]{calc.maps.pc()}} with 2 dimensions.}

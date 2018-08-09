@@ -166,7 +166,7 @@ calc.maps.sphere<-function(fname,p=100,n=NULL,weightfn='lod2',mapfn='haldane'){
 #'
 #' Performs both an weighted MDS on the distance matrix using \code{\link[smacof]{smacofSym}} and 
 #' \code{\link[smacof]{smacofSphere}} (\cite{de Leeuw & Mair 2009}) and fits a 
-#' principal curve to map this to an interval (\code{\link[princurve]{principal.curve}} for details).
+#' principal curve to map this to an interval (\code{\link[princurve]{principal_curve}} for details).
 #'
 #' File names should be of the form \code{fname.txt} and it is assumed that they are in 
 #' a tab or space separated file of the format displayed below. The first entry on 
@@ -212,7 +212,7 @@ calc.maps.sphere<-function(fname,p=100,n=NULL,weightfn='lod2',mapfn='haldane'){
 #' @references
 #' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
 #'
-#' \cite{Hastie T, Weingessel A (2013) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 1.1-12.} \url{https://CRAN.R-project.org/package=princurve}
+#' \cite{Hastie T, Weingessel A, Bengtsson H, Cannoodt R (1999) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 2.1.2.} \url{https://CRAN.R-project.org/package=princurve}
 #'
 #' @seealso
 #' \code{\link{calc.maps.sphere}}, \code{\link{calc.pair.rf.lod}}, \code{\link[smacof]{smacofSym}}, \code{\link[smacof]{smacofSphere}}, \code{\link{map.to.interval}}, \code{\link{dmap}}
@@ -239,11 +239,11 @@ calc.maps.pc<-function(fname,spar=NULL,n=NULL,ndim=2,weightfn='lod2',mapfn='hald
   nloci=length(confplotno)
 
   smacofsym<-smacof::smacofSym(M,ndim=ndim,weightmat=lod,itmax=100000)
-  pc1<-princurve::principal.curve(smacofsym$conf,maxit=150,spar=spar)
+  pc1<-princurve::principal_curve(smacofsym$conf,maxit=150,spar=spar,smoother="smooth_spline")
   scale<-sum(smacofsym$delta)/sum(smacofsym$dhat) 
   # Configuration dissim are based on the normalized observed diss - dhat. 
   # True observed dissimilarities are delta
-  maporder<-pc1$tag
+  maporder<-pc1$ord
   estpos<-pc1$lambda[maporder]*scale*100
   # gives the estimated length from the beginning of the line
   rownames<-lodrf$locinames[maporder]
@@ -432,7 +432,7 @@ calc.pair.rf.lod<-function(fname,weightfn='lod',...){
 #' \code{p} is a smoothing parameter which operates quite differently depending on 
 #' whether map estimation is performed using Principal Curves or Constrained 
 #' MDS. If the PC method is used, \code{p} determines the smoothing parameter spar in 
-#' the function \code{\link[princurve]{principal.curve}} from the package 
+#' the function \code{\link[princurve]{principal_curve}} from the package 
 #' \pkg{princurve}. If \code{NULL} then the most appropriate value will be determined 
 #' using leave one out cross validation. 
 #' If Constrained MDS is used then \code{p} must be set to a number which specifies the 
@@ -473,9 +473,9 @@ calc.pair.rf.lod<-function(fname,weightfn='lod',...){
 #' @references
 #' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
 #'
-#' \cite{Hastie T, Weingessel A (2013) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 1.1-12.} \url{https://CRAN.R-project.org/package=princurve}
+#' \cite{Hastie T, Weingessel A, Bengtsson H, Cannoodt R (1999) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 2.1.2.} \url{https://CRAN.R-project.org/package=princurve}
 #'
-#' @seealso \code{\link[smacof]{smacofSphere}}, \code{\link[princurve]{principal.curve}}, \code{\link{calc.maps.pc}}, \code{\link{calc.maps.sphere}}, \code{\link{plot.pcmap}}, \code{\link{plot.pcmap3d}}, \code{\link{plot.spheremap}}
+#' @seealso \code{\link[smacof]{smacofSphere}}, \code{\link[princurve]{principal_curve}}, \code{\link{calc.maps.pc}}, \code{\link{calc.maps.sphere}}, \code{\link{plot.pcmap}}, \code{\link{plot.pcmap3d}}, \code{\link{plot.spheremap}}
 #'
 #' @examples
 #' estimate.map(system.file("extdata", "lgI.txt", package="MDSMap"),
@@ -993,13 +993,13 @@ plot.pcmap3d <- function (x,D1lim=NULL,D2lim=NULL,D3lim=NULL,displaytext=TRUE,..
     graphics::par(mfrow=c(2,2))
     graphics::plot(smacofsym$conf[,'D1'],smacofsym$conf[,'D2'],type="n",main='MDS with principal curve',xlab='Dimension 1',ylab='Dimension 2',xlim=D1lim,ylim=D2lim)
     text(smacofsym$conf[,'D1'],smacofsym$conf[,'D2'],labels=labels,cex=0.8)
-    lines(pc$s[,'D1'][pc$tag],pc$s[,'D2'][pc$tag])
+	lines(pc$s[,'D1'][pc$ord],pc$s[,'D2'][pc$ord])
     graphics::plot(smacofsym$conf[,'D1'],smacofsym$conf[,'D3'],type="n",main='MDS with principal curve',xlab='Dimension 1',ylab='Dimension 3',xlim=D1lim,ylim=D3lim)
     text(smacofsym$conf[,'D1'],smacofsym$conf[,'D3'],labels=labels,cex=0.8)
-    lines(pc$s[,'D1'][pc$tag],pc$s[,'D3'][pc$tag])
+	lines(pc$s[,'D1'][pc$ord],pc$s[,'D3'][pc$ord])
     graphics::plot(smacofsym$conf[,'D2'],smacofsym$conf[,'D3'],type="n",main='MDS with principal curve',xlab='Dimension 2',ylab='Dimension 3',xlim=D2lim,ylim=D3lim)
     text(smacofsym$conf[,'D2'],smacofsym$conf[,'D3'],labels=labels,cex=0.8)
-    lines(pc$s[,'D2'][pc$tag],pc$s[,'D3'][pc$tag])
+	lines(pc$s[,'D2'][pc$ord],pc$s[,'D3'][pc$ord])
     if (displaytext==TRUE) {
 	  labels1=locimap$locus
 	} else {
@@ -1009,7 +1009,7 @@ plot.pcmap3d <- function (x,D1lim=NULL,D2lim=NULL,D3lim=NULL,displaytext=TRUE,..
     text(locimap$position,locimap$nnfit,labels1)
     rgl::plot3d(smacofsym$conf,type="n")
     rgl::text3d(smacofsym$conf,text=labels)
-    lines3d(pc$s[pc$tag,])
+    lines3d(pc$s[pc$ord,])
   })
 }
 

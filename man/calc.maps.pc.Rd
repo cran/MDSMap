@@ -4,8 +4,8 @@
 \alias{calc.maps.pc}
 \title{Estimate marker positions using Principal Curves}
 \usage{
-calc.maps.pc(fname, spar = NULL, n = NULL, ndim = 2, weightfn = "lod2",
-  mapfn = "haldane")
+calc.maps.pc(fname, spar = NULL, n = NULL, ndim = 2,
+  weightfn = "lod2", mapfn = "haldane")
 }
 \arguments{
 \item{fname}{Character string the name of the file of recombination fractions 
@@ -58,7 +58,7 @@ and the other alternative is Kosambi (see \code{\link{dmap}} for details).
 
 Performs both an weighted MDS on the distance matrix using \code{\link[smacof]{smacofSym}} and 
 \code{\link[smacof]{smacofSphere}} (\cite{de Leeuw & Mair 2009}) and fits a 
-principal curve to map this to an interval (\code{\link[princurve]{principal.curve}} for details).
+principal curve to map this to an interval (\code{\link[princurve]{principal_curve}} for details).
 
 File names should be of the form \code{fname.txt} and it is assumed that they are in 
 a tab or space separated file of the format displayed below. The first entry on 
@@ -93,7 +93,7 @@ plot(map)
 \references{
 \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
 
-\cite{Hastie T, Weingessel A (2013) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 1.1-12.} \url{https://CRAN.R-project.org/package=princurve}
+\cite{Hastie T, Weingessel A, Bengtsson H, Cannoodt R (1999) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 2.1.2.} \url{https://CRAN.R-project.org/package=princurve}
 }
 \seealso{
 \code{\link{calc.maps.sphere}}, \code{\link{calc.pair.rf.lod}}, \code{\link[smacof]{smacofSym}}, \code{\link[smacof]{smacofSphere}}, \code{\link{map.to.interval}}, \code{\link{dmap}}
