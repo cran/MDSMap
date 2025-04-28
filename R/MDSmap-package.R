@@ -22,8 +22,8 @@
 #' @author Katharine F. Preedy <Katharine.preedy@bioss.ac.uk>
 #' @import smacof princurve rgl reshape
 #' @examples
-#' map<-calc.maps.pc(system.file("extdata", "lgV.txt", package="MDSMap"),
-#' ndim=2,weightfn='lod2',mapfn='kosambi')
+#' map<-calc.maps.pc(system.file("extdata", "lgI.txt", package="MDSMap"),
+#' ndim=2,weightfn='lod',mapfn='haldane')
 #' plot(map)
 #' 
 #'

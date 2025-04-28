@@ -23,6 +23,6 @@ The default is the \code{'haldane'} map function \eqn{0.5\ln(1-2rf)}{0.5ln(1-2rf
 \eqn{0.25\ln((1+2rf)/(1-2rf))}{0.25ln((1+2rf)/(1-2rf))} and \code{'none'} returns \eqn{rf}, the recombination fraction.
 }
 \examples{
-lodrf<-calc.pair.rf.lod(system.file("extdata", "lgV.txt", package="MDSMap"))
+lodrf<-calc.pair.rf.lod(system.file("extdata", "lgI.txt", package="MDSMap"))
 mdist=dmap(lodrf$rf,mapfn="haldane")
 }

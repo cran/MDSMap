@@ -52,6 +52,6 @@ value
 }
 }
 \examples{
-lodrf<-calc.pair.rf.lod(system.file("extdata", "lgV.txt", package="MDSMap"), 
+lodrf<-calc.pair.rf.lod(system.file("extdata", "lgI.txt", package="MDSMap"), 
 "lod2")
 }

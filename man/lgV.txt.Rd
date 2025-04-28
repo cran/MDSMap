@@ -3,7 +3,8 @@
 \name{lgV.txt}
 \alias{lgV.txt}
 \title{Dataset lgV.txt: pairwise recombination fractions for 238 markers.}
-\format{An ascii text file in the format described in \code{\link{calc.maps.pc}} 
+\format{
+An ascii text file in the format described in \code{\link{calc.maps.pc}} 
 and \code{\link{calc.maps.sphere}}. The first line contains the number of markers
 and the number of combinations. Then follow the space-separated combinations with
 their recombination fractions and LOD scores:
@@ -21,7 +22,8 @@ their recombination fractions and LOD scores:
 \code{2} \tab \code{3} \tab \code{.} \tab \code{.} \cr
 \code{2} \tab \code{4} \tab \code{.} \tab \code{.} \cr
 \code{.} \tab \code{.} \tab \code{.} \tab \code{.} \cr
-}}
+}
+}
 \source{
 \cite{Hackett, C.A., McLean, K. and Bryan, G.J. (2013). Linkage analysis and QTL mapping using SNP dosage data in a tetraploid potato mapping population. PLoS ONE 8, e63939}
 }

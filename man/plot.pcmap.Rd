@@ -4,8 +4,7 @@
 \alias{plot.pcmap}
 \title{Diagnostic plots for the map estimation using calc.maps.pc with 2 dimensions.}
 \usage{
-\method{plot}{pcmap}(x, D1lim = NULL, D2lim = NULL,
-  displaytext = TRUE, ...)
+\method{plot}{pcmap}(x, D1lim = NULL, D2lim = NULL, displaytext = TRUE, ...)
 }
 \arguments{
 \item{x}{Map object from \code{\link[=calc.maps.pc]{calc.maps.pc()}} with 2 dimensions.}
@@ -41,12 +40,12 @@ by these numbers. By default displaytext=TRUE and markers are labelled by
 marker name.
 }
 \examples{
-map<-calc.maps.pc(system.file("extdata", "lgV.txt", package="MDSMap"),
-ndim=2,weightfn='lod2',mapfn='haldane')
+map<-calc.maps.pc(system.file("extdata", "lgI.txt", package="MDSMap"),
+ndim=2,weightfn='lod',mapfn='haldane')
 plot(map)
 }
 \references{
-\cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+\cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 }
 \seealso{
 \code{\link{plot.pcmap3d}}, \code{\link{plot.spheremap}},\code{\link[smacof]{plot.smacof}}, \code{\link{calc.maps.pc}}

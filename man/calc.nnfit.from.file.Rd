@@ -4,8 +4,13 @@
 \alias{calc.nnfit.from.file}
 \title{Nearest neighbour fit from estimated map and file of pairwise recombination fractions.}
 \usage{
-calc.nnfit.from.file(estmap, fname, mapfn = "haldane", n = NULL,
-  header = FALSE)
+calc.nnfit.from.file(
+  estmap,
+  fname,
+  mapfn = "haldane",
+  n = NULL,
+  header = FALSE
+)
 }
 \arguments{
 \item{estmap}{A character string indicating the name of a comma separated 

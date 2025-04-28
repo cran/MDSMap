@@ -4,8 +4,13 @@
 \alias{calc.maps.sphere}
 \title{Estimate marker positions using spherically constrained weighted MDS}
 \usage{
-calc.maps.sphere(fname, p = 100, n = NULL, weightfn = "lod2",
-  mapfn = "haldane")
+calc.maps.sphere(
+  fname,
+  p = 100,
+  n = NULL,
+  weightfn = "lod2",
+  mapfn = "haldane"
+)
 }
 \arguments{
 \item{fname}{Character string specifying the base name of the file 
@@ -97,10 +102,11 @@ value.
 \examples{
 smap<-calc.maps.sphere(system.file("extdata", "lgI.txt", package="MDSMap"),
 weightfn='lod',mapfn='kosambi')
+plot(smap)
 }
 \references{
 \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF 
-in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 }
 \seealso{
 \code{\link{calc.maps.pc}}, \code{\link{calc.pair.rf.lod}}, \code{\link[smacof]{smacofSym}}, \code{\link[smacof]{smacofSphere}}, \code{\link{map.to.interval}}, \code{\link{dmap}}, \code{\link{calc.nnfit}}

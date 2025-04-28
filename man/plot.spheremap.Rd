@@ -51,7 +51,7 @@ weightfn='lod', mapfn='kosambi')
 plot(map)
 }
 \references{
-\cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+\cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 }
 \seealso{
 \code{\link{plot.pcmap}}, \code{\link{plot.pcmap3d}}, \code{\link[smacof]{plot.smacof}}, \code{\link{calc.maps.sphere}}

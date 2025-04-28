@@ -4,9 +4,19 @@
 \alias{estimate.map}
 \title{Load data, estimate a linkage map and plot diagnostics for the fit.}
 \usage{
-estimate.map(fname, p = NULL, n = NULL, ispc = TRUE, ndim = 2,
-  weightfn = "lod2", mapfn = "haldane", D1lim = NULL, D2lim = NULL,
-  D3lim = NULL, displaytext = TRUE)
+estimate.map(
+  fname,
+  p = NULL,
+  n = NULL,
+  ispc = TRUE,
+  ndim = 2,
+  weightfn = "lod2",
+  mapfn = "haldane",
+  D1lim = NULL,
+  D2lim = NULL,
+  D3lim = NULL,
+  displaytext = TRUE
+)
 }
 \arguments{
 \item{fname}{Character string containing the base file from which the data 
@@ -35,10 +45,10 @@ recombination fractions \code{'haldane'} is default, \code{'kosambi'} or \code{'
 dimension 1 of the wMDS used to estimate the map.}
 
 \item{D2lim}{Numeric vector specifying the limits of the axis relating to 
-dimension 1 of the wMDS used to estimate the map.}
+dimension 2 of the wMDS used to estimate the map.}
 
 \item{D3lim}{Numeric vector specifying the limits of the axis relating to 
-dimension 1 of the wMDS used to estimate the map.}
+dimension 3 of the wMDS used to estimate the map.}
 
 \item{displaytext}{Logical argument determining how markers should be labelled 
 in the wMDS configuration plot. If \code{TRUE} then marker names are used. If 
@@ -115,12 +125,12 @@ value.
 }
 \examples{
 estimate.map(system.file("extdata", "lgI.txt", package="MDSMap"),
-ndim=3)
+ndim=2)
 }
 \references{
-\cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+\cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 
-\cite{Hastie T, Weingessel A, Bengtsson H, Cannoodt R (1999) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 2.1.2.} \url{https://CRAN.R-project.org/package=princurve}
+\cite{Hastie T, Weingessel A (2013) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 1.1-12.} \url{https://CRAN.R-project.org/package=princurve}
 }
 \seealso{
 \code{\link[smacof]{smacofSphere}}, \code{\link[princurve]{principal_curve}}, \code{\link{calc.maps.pc}}, \code{\link{calc.maps.sphere}}, \code{\link{plot.pcmap}}, \code{\link{plot.pcmap3d}}, \code{\link{plot.spheremap}}

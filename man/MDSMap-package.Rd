@@ -24,8 +24,8 @@ The main top level functions to use: \code{\link{calc.maps.pc}} and
 the result.
 }
 \examples{
-map<-calc.maps.pc(system.file("extdata", "lgV.txt", package="MDSMap"),
-ndim=2,weightfn='lod2',mapfn='kosambi')
+map<-calc.maps.pc(system.file("extdata", "lgI.txt", package="MDSMap"),
+ndim=2,weightfn='lod',mapfn='haldane')
 plot(map)
 
 

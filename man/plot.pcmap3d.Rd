@@ -4,20 +4,29 @@
 \alias{plot.pcmap3d}
 \title{Diagnostic plots for the map estimation using calc.maps.pc with 3 dimensions.}
 \usage{
-\method{plot}{pcmap3d}(x, D1lim = NULL, D2lim = NULL, D3lim = NULL,
-  displaytext = TRUE, ...)
+\method{plot}{pcmap3d}(
+  x,
+  D1lim = NULL,
+  D2lim = NULL,
+  D3lim = NULL,
+  displaytext = TRUE,
+  as2d = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{Map object from calc.maps.pc() with 3 dimensions.}
 
 \item{D1lim}{Numeric vector specifying the limits of the axis relating to dimension 1 of the wMDS used to obtain pcmap3d.}
 
-\item{D2lim}{Numeric vector specifying the limits of the axis relating to dimension 1 of the wMDS used to obtain pcmap3d.}
+\item{D2lim}{Numeric vector specifying the limits of the axis relating to dimension 2 of the wMDS used to obtain pcmap3d.}
 
-\item{D3lim}{Numeric vector specifying the limits of the axis relating to dimension 1 of the wMDS used to obtain pcmap3d.}
+\item{D3lim}{Numeric vector specifying the limits of the axis relating to dimension 3 of the wMDS used to obtain pcmap3d.}
 
 \item{displaytext}{Logical argument determining how markers should be labelled 
 in the wMDS configuration plot. If TRUE then marker names are used. If FALSE then numbers are used.}
+
+\item{as2d}{If TRUE: plot this pcmap3d as if it were a pcmap (2d).}
 
 \item{...}{Further arguments are ignored. (accepted for compatibility with generic plot)}
 }
@@ -37,7 +46,7 @@ in the estimated map.
 
 Also plots a 3 dimensional scatterplot of the final MDS configuration and the 
 fitted principal curve in a new window using \code{\link[rgl]{plot3d}} from the 
-\code{\link[=rgl]{rgl package}}. 
+\pkg{rgl} package. 
 
 Markers are assigned numbers according to the order in which they occur in the 
 input file. The locikey output of the map object is a data frame associating 
@@ -46,12 +55,12 @@ If \code{displaytext=FALSE} then markers will be labelled by these numbers.
 By default \code{displaytext=TRUE} and markers are labelled by marker name.
 }
 \examples{
-map<-calc.maps.pc(system.file("extdata", "lgV.txt", package="MDSMap"),
-ndim=3,weightfn='lod2',mapfn='haldane')
+map<-calc.maps.pc(system.file("extdata", "lgI.txt", package="MDSMap"),
+ndim=3,weightfn='lod',mapfn='haldane')
 plot(map)
 }
 \references{
-\cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+\cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 }
 \seealso{
 \code{\link{plot.pcmap}}, \code{\link{plot.spheremap}},\code{\link[smacof]{plot.smacof}}, \code{\link{calc.maps.pc}}, \code{\link[rgl]{plot3d}}

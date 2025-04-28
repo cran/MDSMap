@@ -82,13 +82,14 @@
 #'
 #' @references
 #' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF 
-#' in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+#' in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 #' @seealso
 #' \code{\link{calc.maps.pc}}, \code{\link{calc.pair.rf.lod}}, \code{\link[smacof]{smacofSym}}, \code{\link[smacof]{smacofSphere}}, \code{\link{map.to.interval}}, \code{\link{dmap}}, \code{\link{calc.nnfit}}
 #'
 #' @examples
 #' smap<-calc.maps.sphere(system.file("extdata", "lgI.txt", package="MDSMap"),
 #' weightfn='lod',mapfn='kosambi')
+#' plot(smap)
 #' @export
 calc.maps.sphere<-function(fname,p=100,n=NULL,weightfn='lod2',mapfn='haldane'){
   lodrf<-calc.pair.rf.lod(fname,weightfn)
@@ -210,16 +211,16 @@ calc.maps.sphere<-function(fname,p=100,n=NULL,weightfn='lod2',mapfn='haldane'){
 #' \item{meannnfit}{The mean across all markers of the nearest neighbour fits.}
 #'
 #' @references
-#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 #'
-#' \cite{Hastie T, Weingessel A, Bengtsson H, Cannoodt R (1999) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 2.1.2.} \url{https://CRAN.R-project.org/package=princurve}
+#' \cite{Hastie T, Weingessel A (2013) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 1.1-12.} \url{https://CRAN.R-project.org/package=princurve}
 #'
 #' @seealso
 #' \code{\link{calc.maps.sphere}}, \code{\link{calc.pair.rf.lod}}, \code{\link[smacof]{smacofSym}}, \code{\link[smacof]{smacofSphere}}, \code{\link{map.to.interval}}, \code{\link{dmap}}
 #'
 #' @examples
-#' map<-calc.maps.pc(system.file("extdata", "lgV.txt", package="MDSMap"),
-#' ndim=2,weightfn='lod2',mapfn='kosambi')
+#' map<-calc.maps.pc(system.file("extdata", "lgI.txt", package="MDSMap"),
+#' ndim=2,weightfn='lod',mapfn='haldane')
 #' plot(map)
 #' @export
 
@@ -239,7 +240,7 @@ calc.maps.pc<-function(fname,spar=NULL,n=NULL,ndim=2,weightfn='lod2',mapfn='hald
   nloci=length(confplotno)
 
   smacofsym<-smacof::smacofSym(M,ndim=ndim,weightmat=lod,itmax=100000)
-  pc1<-princurve::principal_curve(smacofsym$conf,maxit=150,spar=spar,smoother="smooth_spline")
+  pc1<-princurve::principal_curve(smacofsym$conf,maxit=150,spar=spar)
   scale<-sum(smacofsym$delta)/sum(smacofsym$dhat) 
   # Configuration dissim are based on the normalized observed diss - dhat. 
   # True observed dissimilarities are delta
@@ -317,7 +318,7 @@ calc.maps.pc<-function(fname,spar=NULL,n=NULL,ndim=2,weightfn='lod2',mapfn='hald
 #' \item{locinames}{The names of the markers in the analysis.}
 #'
 #' @examples
-#' lodrf<-calc.pair.rf.lod(system.file("extdata", "lgV.txt", package="MDSMap"), 
+#' lodrf<-calc.pair.rf.lod(system.file("extdata", "lgI.txt", package="MDSMap"), 
 #' "lod2")
 #' @export
 calc.pair.rf.lod<-function(fname,weightfn='lod',...){
@@ -398,9 +399,9 @@ calc.pair.rf.lod<-function(fname,weightfn='lod',...){
 #' @param D1lim Numeric vector specifying the limits of the axis relating to 
 #' dimension 1 of the wMDS used to estimate the map.
 #' @param D2lim Numeric vector specifying the limits of the axis relating to 
-#' dimension 1 of the wMDS used to estimate the map.
+#' dimension 2 of the wMDS used to estimate the map.
 #' @param D3lim Numeric vector specifying the limits of the axis relating to 
-#' dimension 1 of the wMDS used to estimate the map.
+#' dimension 3 of the wMDS used to estimate the map.
 #' @param displaytext Logical argument determining how markers should be labelled 
 #' in the wMDS configuration plot. If \code{TRUE} then marker names are used. If 
 #' \code{FALSE} then numbers are used.
@@ -471,15 +472,15 @@ calc.pair.rf.lod<-function(fname,weightfn='lod',...){
 #' \code{\link{calc.maps.sphere}} if \code{ispc=FALSE}.
 #'
 #' @references
-#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 #'
-#' \cite{Hastie T, Weingessel A, Bengtsson H, Cannoodt R (1999) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 2.1.2.} \url{https://CRAN.R-project.org/package=princurve}
+#' \cite{Hastie T, Weingessel A (2013) princurve: Fits a Principal Curve in Arbitrary Dimension. ) R package version 1.1-12.} \url{https://CRAN.R-project.org/package=princurve}
 #'
 #' @seealso \code{\link[smacof]{smacofSphere}}, \code{\link[princurve]{principal_curve}}, \code{\link{calc.maps.pc}}, \code{\link{calc.maps.sphere}}, \code{\link{plot.pcmap}}, \code{\link{plot.pcmap3d}}, \code{\link{plot.spheremap}}
 #'
 #' @examples
 #' estimate.map(system.file("extdata", "lgI.txt", package="MDSMap"),
-#' ndim=3)
+#' ndim=2)
 #' @export
 estimate.map<-function(fname,p=NULL,n=NULL,ispc=TRUE,ndim=2,weightfn='lod2',mapfn='haldane',D1lim=NULL,D2lim=NULL,D3lim=NULL,displaytext=TRUE){
   if(!is.null(n)){
@@ -492,11 +493,11 @@ estimate.map<-function(fname,p=NULL,n=NULL,ispc=TRUE,ndim=2,weightfn='lod2',mapf
   }
   if(ispc==FALSE){
     map<-calc.maps.sphere(fname,p,n,weightfn=weightfn,mapfn=mapfn)
-    graphics::plot(map,displaytext=displaytext)
+    graphics::plot(map,D1lim, D2lim, displaytext=displaytext)
   } else {
     map<-calc.maps.pc(fname,spar=p,n,ndim=ndim,weightfn=weightfn,mapfn=mapfn)
     if(ndim==2) {
-	  graphics::plot(map,displaytext=displaytext)
+	  graphics::plot(map,D1lim, D2lim, displaytext=displaytext)
 	} else { 
 	  graphics::plot(map,D1lim,D2lim,D3lim,displaytext=displaytext)
 	}
@@ -611,7 +612,7 @@ calc.nnfit.from.file<-function(estmap,fname,mapfn='haldane',n=NULL,header=FALSE)
 #' @return a symmetric matrix of pairwise map distances in the same format as the recombination matrix supplied.
 #'
 #' @examples
-#' lodrf<-calc.pair.rf.lod(system.file("extdata", "lgV.txt", package="MDSMap"))
+#' lodrf<-calc.pair.rf.lod(system.file("extdata", "lgI.txt", package="MDSMap"))
 #' mdist=dmap(lodrf$rf,mapfn="haldane")
 #' @export
 dmap<-function(rf,mapfn="haldane"){
@@ -638,7 +639,7 @@ dmap<-function(rf,mapfn="haldane"){
 #' \item{radius}{A scalar the radius of sphere.}
 #'
 #' @references 
-#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31:1-30} \url{http://www.jstatsoft.org/v31/i03/}
+#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31:1-30} \url{https://www.jstatsoft.org/v31/i03/}
 #' @seealso
 #' \code{\link[smacof]{smacofSphere}}
 #' @examples
@@ -907,14 +908,14 @@ calc.nswaps<-function(map1, map2){
 #' marker name.
 #'
 #' @references
-#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 #'
 #' @seealso
 #' \code{\link{plot.pcmap3d}}, \code{\link{plot.spheremap}},\code{\link[smacof]{plot.smacof}}, \code{\link{calc.maps.pc}}
 #'
 #' @examples
-#' map<-calc.maps.pc(system.file("extdata", "lgV.txt", package="MDSMap"),
-#' ndim=2,weightfn='lod2',mapfn='haldane')
+#' map<-calc.maps.pc(system.file("extdata", "lgI.txt", package="MDSMap"),
+#' ndim=2,weightfn='lod',mapfn='haldane')
 #' plot(map)
 #' @export
 plot.pcmap <- function (x,D1lim=NULL,D2lim=NULL,displaytext=TRUE,...){
@@ -926,15 +927,15 @@ plot.pcmap <- function (x,D1lim=NULL,D2lim=NULL,displaytext=TRUE,...){
 	    labels=locikey$confplotno
 	  }
       graphics::plot(smacofsym$conf,type="n",main='MDS with principal curve',xlim=D1lim,ylim=D2lim,xlab='Dim 1',ylab='Dim 2')
-      text(smacofsym$conf,labels=labels,cex=0.8)
-      lines(pc)
+      graphics::text(smacofsym$conf,labels=labels,cex=0.8)
+      graphics::lines(pc)
       if (displaytext==TRUE)  {
 	    labels1=locimap$locus
 	  } else  {
 	    labels1=locimap$confplotno
 	  }
       graphics::plot(locimap$position,locimap$nnfit,type='n',xlab='Position',ylab='nnfit',main='nearest neighbour fits')
-      text(locimap$position,locimap$nnfit,labels1)
+      graphics::text(locimap$position,locimap$nnfit,labels1)
     })
 }
 
@@ -945,10 +946,11 @@ plot.pcmap <- function (x,D1lim=NULL,D2lim=NULL,displaytext=TRUE,...){
 #'
 #' @param x Map object from calc.maps.pc() with 3 dimensions.
 #' @param D1lim Numeric vector specifying the limits of the axis relating to dimension 1 of the wMDS used to obtain pcmap3d.
-#' @param D2lim Numeric vector specifying the limits of the axis relating to dimension 1 of the wMDS used to obtain pcmap3d.
-#' @param D3lim Numeric vector specifying the limits of the axis relating to dimension 1 of the wMDS used to obtain pcmap3d.
+#' @param D2lim Numeric vector specifying the limits of the axis relating to dimension 2 of the wMDS used to obtain pcmap3d.
+#' @param D3lim Numeric vector specifying the limits of the axis relating to dimension 3 of the wMDS used to obtain pcmap3d.
 #' @param displaytext Logical argument determining how markers should be labelled 
 #' in the wMDS configuration plot. If TRUE then marker names are used. If FALSE then numbers are used.
+#' @param as2d If TRUE: plot this pcmap3d as if it were a pcmap (2d).
 #' @param ... Further arguments are ignored. (accepted for compatibility with generic plot)
 #'
 #' @details
@@ -964,7 +966,7 @@ plot.pcmap <- function (x,D1lim=NULL,D2lim=NULL,displaytext=TRUE,...){
 #'
 #' Also plots a 3 dimensional scatterplot of the final MDS configuration and the 
 #' fitted principal curve in a new window using \code{\link[rgl]{plot3d}} from the 
-#' \code{\link[=rgl]{rgl package}}. 
+#' \pkg{rgl} package. 
 #'
 #' Markers are assigned numbers according to the order in which they occur in the 
 #' input file. The locikey output of the map object is a data frame associating 
@@ -973,44 +975,48 @@ plot.pcmap <- function (x,D1lim=NULL,D2lim=NULL,displaytext=TRUE,...){
 #' By default \code{displaytext=TRUE} and markers are labelled by marker name.
 #'
 #' @references
-#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 #' @seealso 
 #' \code{\link{plot.pcmap}}, \code{\link{plot.spheremap}},\code{\link[smacof]{plot.smacof}}, \code{\link{calc.maps.pc}}, \code{\link[rgl]{plot3d}}
 #'
 #' @examples
-#' map<-calc.maps.pc(system.file("extdata", "lgV.txt", package="MDSMap"),
-#' ndim=3,weightfn='lod2',mapfn='haldane')
+#' map<-calc.maps.pc(system.file("extdata", "lgI.txt", package="MDSMap"),
+#' ndim=3,weightfn='lod',mapfn='haldane')
 #' plot(map)
 #' @export
-plot.pcmap3d <- function (x,D1lim=NULL,D2lim=NULL,D3lim=NULL,displaytext=TRUE,...) {
-  graphics::par(mfrow=c(2,2))
-  with(x,{
-    if (displaytext==TRUE) {
-	  labels=locikey$locus 
-	} else {
-	  labels=locikey$confplotno
-	}
+plot.pcmap3d <- function (x,D1lim=NULL,D2lim=NULL,D3lim=NULL,displaytext=TRUE,as2d=FALSE,...) {
+  if(as2d) {
+	plot.pcmap(x,D1lim=NULL,D2lim=NULL,displaytext=TRUE,...)
+  }else{
     graphics::par(mfrow=c(2,2))
-    graphics::plot(smacofsym$conf[,'D1'],smacofsym$conf[,'D2'],type="n",main='MDS with principal curve',xlab='Dimension 1',ylab='Dimension 2',xlim=D1lim,ylim=D2lim)
-    text(smacofsym$conf[,'D1'],smacofsym$conf[,'D2'],labels=labels,cex=0.8)
-	lines(pc$s[,'D1'][pc$ord],pc$s[,'D2'][pc$ord])
-    graphics::plot(smacofsym$conf[,'D1'],smacofsym$conf[,'D3'],type="n",main='MDS with principal curve',xlab='Dimension 1',ylab='Dimension 3',xlim=D1lim,ylim=D3lim)
-    text(smacofsym$conf[,'D1'],smacofsym$conf[,'D3'],labels=labels,cex=0.8)
-	lines(pc$s[,'D1'][pc$ord],pc$s[,'D3'][pc$ord])
-    graphics::plot(smacofsym$conf[,'D2'],smacofsym$conf[,'D3'],type="n",main='MDS with principal curve',xlab='Dimension 2',ylab='Dimension 3',xlim=D2lim,ylim=D3lim)
-    text(smacofsym$conf[,'D2'],smacofsym$conf[,'D3'],labels=labels,cex=0.8)
-	lines(pc$s[,'D2'][pc$ord],pc$s[,'D3'][pc$ord])
-    if (displaytext==TRUE) {
-	  labels1=locimap$locus
-	} else {
-	  labels1=locimap$confplotno
-	}
-    graphics::plot(locimap$position,locimap$nnfit,type='n',xlab='Position',ylab='nnfit',main='nearest neighbour fits')
-    text(locimap$position,locimap$nnfit,labels1)
-    rgl::plot3d(smacofsym$conf,type="n")
-    rgl::text3d(smacofsym$conf,text=labels)
-    lines3d(pc$s[pc$ord,])
-  })
+    with(x,{
+      if (displaytext==TRUE) {
+	    labels=locikey$locus 
+	  } else {
+	    labels=locikey$confplotno
+	  }
+      graphics::par(mfrow=c(2,2))
+      graphics::plot(smacofsym$conf[,'D1'],smacofsym$conf[,'D2'],type="n",main='MDS with principal curve',xlab='Dimension 1',ylab='Dimension 2',xlim=D1lim,ylim=D2lim)
+      graphics::text(smacofsym$conf[,'D1'],smacofsym$conf[,'D2'],labels=labels,cex=0.8)
+      graphics::lines(pc$s[,'D1'][pc$ord],pc$s[,'D2'][pc$ord])
+      graphics::plot(smacofsym$conf[,'D1'],smacofsym$conf[,'D3'],type="n",main='MDS with principal curve',xlab='Dimension 1',ylab='Dimension 3',xlim=D1lim,ylim=D3lim)
+      graphics::text(smacofsym$conf[,'D1'],smacofsym$conf[,'D3'],labels=labels,cex=0.8)
+      graphics::lines(pc$s[,'D1'][pc$ord],pc$s[,'D3'][pc$ord])
+      graphics::plot(smacofsym$conf[,'D2'],smacofsym$conf[,'D3'],type="n",main='MDS with principal curve',xlab='Dimension 2',ylab='Dimension 3',xlim=D2lim,ylim=D3lim)
+      graphics::text(smacofsym$conf[,'D2'],smacofsym$conf[,'D3'],labels=labels,cex=0.8)
+      graphics::lines(pc$s[,'D2'][pc$ord],pc$s[,'D3'][pc$ord])
+      if (displaytext==TRUE) {
+	    labels1=locimap$locus
+	  } else {
+	    labels1=locimap$confplotno
+	  }
+      graphics::plot(locimap$position,locimap$nnfit,type='n',xlab='Position',ylab='nnfit',main='nearest neighbour fits')
+      graphics::text(locimap$position,locimap$nnfit,labels1)
+      rgl::plot3d(smacofsym$conf,type="n")
+      rgl::text3d(smacofsym$conf,text=labels)
+      rgl::lines3d(pc$s[pc$ord,])
+    })
+  }
 }
 
 #' Produces diagnostic plots for the estimated map using \code{\link{calc.maps.sphere}}.
@@ -1051,7 +1057,7 @@ plot.pcmap3d <- function (x,D1lim=NULL,D2lim=NULL,D3lim=NULL,displaytext=TRUE,..
 #' marker name.
 #'
 #' @references
-#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{http://www.jstatsoft.org/v31/i03/}
+#' \cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31: 1-30} \url{https://www.jstatsoft.org/v31/i03/}
 #'
 #' @seealso
 #' \code{\link{plot.pcmap}}, \code{\link{plot.pcmap3d}}, \code{\link[smacof]{plot.smacof}}, \code{\link{calc.maps.sphere}}
@@ -1071,27 +1077,27 @@ plot.spheremap <- function (x,displaytext=TRUE,...) {
 	  labels=locikey$confplotno
 	}
     graphics::plot(c(0,1),c(0,1),type='n',axes=F,xlab="",ylab="")
-    text(0.5,0.7,paste('Sym Stress =',round(ssym,digits=4)))
-    text(0.5,0.55,paste('Sphere Stress/Sym Stress =',round(stressratio,digits=4)))
-    text(0.5,0.4,paste('Sphere Stress =',round(ssphere,digits=4)))
+    graphics::text(0.5,0.7,paste('Sym Stress =',round(ssym,digits=4)))
+    graphics::text(0.5,0.55,paste('Sphere Stress/Sym Stress =',round(stressratio,digits=4)))
+    graphics::text(0.5,0.4,paste('Sphere Stress =',round(ssphere,digits=4)))
 
     graphics::plot(smacofsym,plot.type="confplot",type="n",main='Unconstrained',label.conf=list(label=FALSE,pos=1,col=1))
-    text(smacofsym$conf,labels=labels,cex=0.8)
+    graphics::text(smacofsym$conf,labels=labels,cex=0.8)
 	xlower=min(smacofsym$conf[,1],smacofsphere$conf[,1])
     xupper=max(smacofsym$conf[,1],smacofsphere$conf[,1])
     ylower=min(smacofsym$conf[,2],smacofsphere$conf[,2])
     yupper=max(smacofsym$conf[,2],smacofsphere$conf[,2])
     graphics::plot(smacofsym,plot.type="confplot",type="n",main='Unconstrained + Spherical',label.conf=list(label=FALSE,pos=1,col=1),xlim=c(xlower,xupper),ylim=c(ylower,yupper))
-    text(smacofsym$conf,labels=labels,cex=0.8)
+    graphics::text(smacofsym$conf,labels=labels,cex=0.8)
     l=dim(smacofsphere$conf)[1]-1
-    text(smacofsphere$conf[1:l+1,],labels=labels,cex=0.8,col="red") 
+    graphics::text(smacofsphere$conf[1:l+1,],labels=labels,cex=0.8,col="red") 
     if (displaytext==TRUE)  {
 	  labels1=locimap$locus 
 	} else {
 	  labels1=locimap$confplotno
 	}
     graphics::plot(locimap$position,locimap$nnfit,type='n',xlab='Position',ylab='nnfit',main='nearest neighbour fits')
-    text(locimap$position,locimap$nnfit,labels1)
+    graphics::text(locimap$position,locimap$nnfit,labels1)
   })
 }
 
@@ -1281,6 +1287,5 @@ sim.bc.rflod.file<-function(fname){
   rf.frame$lod=log((1-rf.frame$rf)^temp[,3]*rf.frame$rf^(l-temp[,3])/(0.5^l),10)
   fn<-paste(fname,".txt",sep="")
   utils::write.table(t(c(d,dim(rf.frame)[1])),file=fn,row.names=FALSE,col.names=FALSE,sep="\t")
-  utils::write.table(rf.frame,file=fn,append=TRUE, quote=FALSE,row.names=FALSE,col.names=FALSE,sep="\t")}
-
-
+  utils::write.table(rf.frame,file=fn,append=TRUE, quote=FALSE,row.names=FALSE,col.names=FALSE,sep="\t")
+}

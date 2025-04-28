@@ -33,7 +33,7 @@ pol<-convert.polar(mds1,n)
 }
 }
 \references{
-\cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31:1-30} \url{http://www.jstatsoft.org/v31/i03/}
+\cite{de Leeuw J, Mair P (2009) Multidimensional scaling using majorization: SMACOF in R. J Stat Softw 31:1-30} \url{https://www.jstatsoft.org/v31/i03/}
 }
 \seealso{
 \code{\link[smacof]{smacofSphere}}
